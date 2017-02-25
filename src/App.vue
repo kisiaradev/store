@@ -22,4 +22,8 @@ body{
 	font-size: 12px;
 	color: #333;
 }	
+
+button{
+    outline: none;
+}
 </style>	
