@@ -47,7 +47,7 @@ export default{
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dafoe{
 	font-family: 'Mr Dafoe', cursive;
 	color: #e67e22;

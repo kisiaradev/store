@@ -5,5 +5,6 @@ export const featured = {
 	tagline: 'Enduring, Timely Design',
 	name: 'Confederate Bike',
 	price: '1200.99',
-	image: imageStore + 'confederate.jpg'
+	image: imageStore + 'confederate.jpg',
+
 }

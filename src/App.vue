@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <router-view></router-view>
     </div>
 </template>
@@ -16,6 +16,10 @@ export default {
 
 <!-- System wide styles -->
 <style>
+html, body, #app{
+    height: 100%;
+}
+
 body{
 	font-family: 'Roboto', sans-serif;
 	color: #333;
@@ -25,5 +29,11 @@ body{
 
 button{
     outline: none;
+}
+
+.help-text{
+    color: #e74c3c;
+    font-weight: 500;
+    font-style: normal;
 }
 </style>	
