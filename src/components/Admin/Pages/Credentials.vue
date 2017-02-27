@@ -42,6 +42,10 @@
 							        	<button type="button" class="success button medium-12 columns" v-show="!register" @click="loginUser" >Login</button>
 							      	</label>
 								</div>
+
+								<div class="medium-12 columns">
+							      	<p id="no-match" v-if="loginStatus == 'failed'" class="help-text text-error">Sorry, no match found!!! Try again.</p>
+							    </div>
 							</div>
 						</div>
 					</div> 
@@ -55,6 +59,8 @@
 
 require('../../../assets/scripts/credentials.js');
 const api_store = 'https://store-ed6a8.firebaseio.com/stores/data.json';
+const api_products = 'https://store-ed6a8.firebaseio.com/products/data.json';
+const api_user = 'https://store-ed6a8.firebaseio.com/user/data.json';
 
 export default{
 	data: function(){
@@ -66,7 +72,8 @@ export default{
     			},
     			register: true,
     			storeExists: false,
-    			userExists: false, 
+    			userExists: false,
+    			loginStatus: null 
     	}
     },
 
@@ -82,6 +89,7 @@ export default{
 				//Check if the username and store have already been registered
 				this.getStores().then(
 	    			data => {
+	    				console.log(data);
 	    				var submitDetails = this.checkAvailability(data);
 
 	    				if(this.checkAvailability(data)){
@@ -90,7 +98,7 @@ export default{
 									response => {
 									
 										//run login
-										console.log(response);
+										console.log(response.data.name);
 									}, 
 									error => {
 										console.log("*** Errors ***")
@@ -153,9 +161,25 @@ export default{
 		},
 
 		loginUser(){
+
 			this.getStores().then(data => {
-				console.log(data);
+				for(let key in data)
+				{
+					if(data[key].username == this.user.username && data[key].password == this.user.password)
+					{
+						this.$http.put(api_user, data[key]);
+						this.redirect_me('/dashboard');
+					}
+					else
+					{
+						this.loginStatus = "failed";
+					}
+				}
 			});
+		},
+
+		redirect_me(path){
+			this.$router.push('/dashboard');
 		}
 	}	
 }
@@ -264,6 +288,12 @@ export default{
 		margin-right: 15px;
 	}
 	
+}
+
+#no-match{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
 }
 </style>	
 
