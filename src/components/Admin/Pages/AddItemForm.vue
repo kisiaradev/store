@@ -18,6 +18,11 @@
 	      			<p class="help-text">prices are all in euros</p>
 	    		</div>
 	    		<div class="medium-12 columns">
+	      			<label>Quantity
+	        			<input type="number">
+	      			</label>
+	    		</div>
+	    		<div class="medium-12 columns">
 	      			<label>Item Description
         				<textarea></textarea>
       				</label>
@@ -32,9 +37,13 @@
 	    		</div>
 	  		</div>
 		</form>
-	  	
+
 	</div>
 </template>
+
+<script>
+
+</script>
 
 <style lang="scss">
 .dashboard-modal{

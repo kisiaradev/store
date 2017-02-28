@@ -1,24 +1,25 @@
 <template>
 <div>
-	<admin-header :user="user"></admin-header>
-
+	<admin-header></admin-header>
+	<admin-table :user="user"></admin-table>	
 </div>
 </template>
 
 <script>
 import AdminHeader from '../Shared/Header.vue'
 import AdminFooter from '../Shared/Footer.vue'
+import AdminStore from './Store.vue';
 
 const api_user = 'https://store-ed6a8.firebaseio.com/user/data.json';
 
 export default{
-	data: function(){
+	data(){
 		return {
 		    user: null
 		};
 	},
 
-	mounted: function(){
+	mounted(){
 		this.setUser();
 	},
 
@@ -35,7 +36,8 @@ export default{
 
 	components: {
 		'admin-header': AdminHeader,
-		'admin-footer': AdminFooter
+		'admin-footer': AdminFooter,
+		'admin-table': AdminStore
 	}
 
 	
